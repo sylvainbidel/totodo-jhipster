@@ -19,14 +19,6 @@ logging:
         com.thebibilab.todo: DEBUG
         io.github.jhipster: DEBUG
 
-eureka:
-    instance:
-        prefer-ip-address: true
-    client:
-        enabled: false # By default, the JHipster Registry is not used in the "dev" profile
-        service-url:
-            defaultZone: http://admin:${jhipster.registry.password}@localhost:8761/eureka/
-
 spring:
     profiles:
         active: dev
@@ -38,26 +30,10 @@ spring:
             enabled: false # we use gulp + BrowserSync for livereload
     jackson:
         serialization.indent_output: true
-    cloud:
-        stream:
-            kafka:
-                binder:
-                    brokers: localhost
-                    zk-nodes: localhost
-            bindings:
-                output:
-                    destination: topic-jhipster
     data:
         mongodb:
             uri: mongodb://localhost:27017
             database: todo
-        elasticsearch:
-            cluster-name:
-            cluster-nodes:
-            properties:
-                path:
-                    logs: build/elasticsearch/log
-                    data: build/elasticsearch/data
     mail:
         host: localhost
         port: 25
@@ -67,12 +43,6 @@ spring:
         cache-seconds: 1
     thymeleaf:
         cache: false
-    zipkin: # Use the "zipkin" Maven profile to have the Spring Cloud Zipkin dependencies
-        base-url: http://localhost:9411
-        enabled: false
-        locator:
-            discovery:
-                enabled: true
 
 # ===================================================================
 # To enable SSL, generate a certificate using:

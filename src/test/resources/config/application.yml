@@ -13,39 +13,17 @@
 # http://docs.spring.io/spring-boot/docs/current/reference/html/common-application-properties.html
 # ===================================================================
 
-eureka:
-    client:
-        enabled: true
-    instance:
-        appname: todo
-        instanceId: todo:${spring.application.instance-id:${random.value}}
 
 spring:
     application:
         name: todo
     jackson:
         serialization.write_dates_as_timestamps: false
-    cloud:
-        stream:
-            kafka:
-                binder:
-                    brokers: localhost
-                    zk-nodes: localhost
-            bindings:
-                output:
-                    destination: topic-jhipster
     data:
         mongodb:
             host: localhost
             port: 0
             database: todo
-        elasticsearch:
-            cluster-name:
-            cluster-nodes:
-            properties:
-                path:
-                    logs: build/elasticsearch/log
-                    data: build/elasticsearch/data
     mail:
         host: localhost
     messages:
@@ -91,7 +69,7 @@ jhipster:
     security:
         authentication:
             jwt:
-                secret: b3b0620480d0da3c26b706771f1e624d5ad887e3
+                secret: d533f898fe6b7ca23a40b479dd8bc30de3153f9f
                 # Token is valid 24 hours
                 token-validity-in-seconds: 86400
     metrics: # DropWizard Metrics configuration, used by MetricsConfiguration

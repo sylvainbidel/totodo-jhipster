@@ -13,10 +13,7 @@ import {
     LoginModalService,
     JhiLoginModalComponent,
     Principal,
-    JhiTrackerService,
     HasAnyAuthorityDirective,
-    JhiSocialComponent,
-    SocialService,
 } from './';
 
 @NgModule({
@@ -25,7 +22,6 @@ import {
         TodoSharedCommonModule
     ],
     declarations: [
-        JhiSocialComponent,
         JhiLoginModalComponent,
         HasAnyAuthorityDirective
     ],
@@ -36,16 +32,13 @@ import {
         StateStorageService,
         Principal,
         CSRFService,
-        JhiTrackerService,
         AuthServerProvider,
-        SocialService,
         UserService,
         DatePipe
     ],
     entryComponents: [JhiLoginModalComponent],
     exports: [
         TodoSharedCommonModule,
-        JhiSocialComponent,
         JhiLoginModalComponent,
         HasAnyAuthorityDirective,
         DatePipe

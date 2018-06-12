@@ -3,9 +3,10 @@ import { Title } from '@angular/platform-browser';
 import { registerLocaleData } from '@angular/common';
 import locale from '@angular/common/locales/en';
 
-import { WindowRef } from './tracker/window.service';
 import {
     TodoSharedLibsModule,
+    JhiLanguageHelper,
+    FindLanguageFromKeyPipe,
     JhiAlertComponent,
     JhiAlertErrorComponent
 } from './';
@@ -15,11 +16,12 @@ import {
         TodoSharedLibsModule
     ],
     declarations: [
+        FindLanguageFromKeyPipe,
         JhiAlertComponent,
         JhiAlertErrorComponent
     ],
     providers: [
-        WindowRef,
+        JhiLanguageHelper,
         Title,
         {
             provide: LOCALE_ID,
@@ -28,6 +30,7 @@ import {
     ],
     exports: [
         TodoSharedLibsModule,
+        FindLanguageFromKeyPipe,
         JhiAlertComponent,
         JhiAlertErrorComponent
     ]

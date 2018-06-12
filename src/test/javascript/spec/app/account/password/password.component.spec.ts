@@ -7,8 +7,6 @@ import { PasswordComponent } from '../../../../../../main/webapp/app/account/pas
 import { PasswordService } from '../../../../../../main/webapp/app/account/password/password.service';
 import { Principal } from '../../../../../../main/webapp/app/shared/auth/principal.service';
 import { AccountService } from '../../../../../../main/webapp/app/shared/auth/account.service';
-import { JhiTrackerService } from '../../../../../../main/webapp/app/shared/tracker/tracker.service';
-import { MockTrackerService } from '../../../helpers/mock-tracker.service';
 
 describe('Component Tests', () => {
 
@@ -25,10 +23,6 @@ describe('Component Tests', () => {
                 providers: [
                     Principal,
                     AccountService,
-                    {
-                        provide: JhiTrackerService,
-                        useClass: MockTrackerService
-                    },
                     PasswordService
                 ]
             })

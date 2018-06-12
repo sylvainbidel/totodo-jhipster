@@ -5,7 +5,6 @@ import com.thebibilab.todo.domain.User;
 import com.thebibilab.todo.repository.AuthorityRepository;
 import com.thebibilab.todo.config.Constants;
 import com.thebibilab.todo.repository.UserRepository;
-import com.thebibilab.todo.repository.search.UserSearchRepository;
 import com.thebibilab.todo.security.AuthoritiesConstants;
 import com.thebibilab.todo.security.SecurityUtils;
 import com.thebibilab.todo.service.util.RandomUtil;
@@ -36,17 +35,11 @@ public class UserService {
 
     private final PasswordEncoder passwordEncoder;
 
-    private final SocialService socialService;
-
-    private final UserSearchRepository userSearchRepository;
-
     private final AuthorityRepository authorityRepository;
 
-    public UserService(UserRepository userRepository, PasswordEncoder passwordEncoder, SocialService socialService, UserSearchRepository userSearchRepository, AuthorityRepository authorityRepository) {
+    public UserService(UserRepository userRepository, PasswordEncoder passwordEncoder, AuthorityRepository authorityRepository) {
         this.userRepository = userRepository;
         this.passwordEncoder = passwordEncoder;
-        this.socialService = socialService;
-        this.userSearchRepository = userSearchRepository;
         this.authorityRepository = authorityRepository;
     }
 
@@ -58,7 +51,6 @@ public class UserService {
                 user.setActivated(true);
                 user.setActivationKey(null);
                 userRepository.save(user);
-                userSearchRepository.save(user);
                 log.debug("Activated user: {}", user);
                 return user;
             });
@@ -110,7 +102,6 @@ public class UserService {
         authorities.add(authority);
         newUser.setAuthorities(authorities);
         userRepository.save(newUser);
-        userSearchRepository.save(newUser);
         log.debug("Created Information for User: {}", newUser);
         return newUser;
     }
@@ -139,7 +130,6 @@ public class UserService {
         user.setResetDate(Instant.now());
         user.setActivated(true);
         userRepository.save(user);
-        userSearchRepository.save(user);
         log.debug("Created Information for User: {}", user);
         return user;
     }
@@ -163,7 +153,6 @@ public class UserService {
                 user.setLangKey(langKey);
                 user.setImageUrl(imageUrl);
                 userRepository.save(user);
-                userSearchRepository.save(user);
                 log.debug("Changed Information for User: {}", user);
             });
     }
@@ -191,7 +180,6 @@ public class UserService {
                     .map(authorityRepository::findOne)
                     .forEach(managedAuthorities::add);
                 userRepository.save(user);
-                userSearchRepository.save(user);
                 log.debug("Changed Information for User: {}", user);
                 return user;
             })
@@ -200,9 +188,7 @@ public class UserService {
 
     public void deleteUser(String login) {
         userRepository.findOneByLogin(login).ifPresent(user -> {
-            socialService.deleteUserSocialConnection(user.getLogin());
             userRepository.delete(user);
-            userSearchRepository.delete(user);
             log.debug("Deleted User: {}", user);
         });
     }
@@ -245,7 +231,6 @@ public class UserService {
         for (User user : users) {
             log.debug("Deleting not activated user {}", user.getLogin());
             userRepository.delete(user);
-            userSearchRepository.delete(user);
         }
     }
 

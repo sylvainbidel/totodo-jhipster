@@ -1,7 +1,8 @@
 {
   "generator-jhipster": {
     "promptValues": {
-      "packageName": "com.thebibilab.todo"
+      "packageName": "com.thebibilab.todo",
+      "nativeLanguage": "en"
     },
     "jhipsterVersion": "4.14.4",
     "baseName": "todo",
@@ -11,17 +12,17 @@
     "authenticationType": "jwt",
     "cacheProvider": "no",
     "enableHibernateCache": false,
-    "websocket": "spring-websocket",
+    "websocket": false,
     "databaseType": "mongodb",
     "devDatabaseType": "mongodb",
     "prodDatabaseType": "mongodb",
-    "searchEngine": "elasticsearch",
-    "messageBroker": "kafka",
-    "serviceDiscoveryType": "eureka",
+    "searchEngine": false,
+    "messageBroker": false,
+    "serviceDiscoveryType": false,
     "buildTool": "gradle",
-    "enableSocialSignIn": true,
+    "enableSocialSignIn": false,
     "enableSwaggerCodegen": false,
-    "jwtSecretKey": "b3b0620480d0da3c26b706771f1e624d5ad887e3",
+    "jwtSecretKey": "d533f898fe6b7ca23a40b479dd8bc30de3153f9f",
     "clientFramework": "angularX",
     "useSass": false,
     "clientPackageManager": "yarn",
@@ -30,6 +31,10 @@
       "cucumber"
     ],
     "jhiPrefix": "jhi",
-    "enableTranslation": false
+    "enableTranslation": true,
+    "nativeLanguage": "en",
+    "languages": [
+      "en"
+    ]
   }
 }
